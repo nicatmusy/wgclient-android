@@ -1,27 +1,41 @@
-name: Makefile CI
+name: Build CS 1.6 Client for PC
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - name: configure
-      run: ./configure
+    - name: Set up CMake
+      uses: cmake/setup-cmake@v2
+      with:
+        cmake-version: '3.21'  # Gereksinimlerinize göre versiyonu ayarlayın
 
     - name: Install dependencies
-      run: make
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential libglib2.0-dev libx11-dev libgl-dev  # İhtiyaç duyduğunuz kütüphaneler
+        sudo apt-get install -y cmake g++ gcc make  # CMake ve derleyici araçları
 
-    - name: Run check
-      run: make check
+    - name: Build project
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        make
 
-    - name: Run distcheck
-      run: make distcheck
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: cs-client-build
+        path: ./build
