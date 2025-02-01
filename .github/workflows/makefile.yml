@@ -27,7 +27,7 @@ jobs:
       run: |
         rm -rf build  # Önceden var olan build dizinini sil
         mkdir build
-        cd wgclient-android  # CMakeLists.txt dosyasının olduğu dizine geçiş yapıyoruz
+        cd ./  # CMakeLists.txt dosyasının olduğu dizine geçiş yapıyoruz
         mkdir build
         cd build
         cmake ..  # CMakeLists.txt dosyasının olduğu dizine işaret ediyor
