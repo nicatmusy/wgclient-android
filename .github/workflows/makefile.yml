@@ -16,16 +16,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up CMake
-      uses: cmake/setup-cmake@v2
-      with:
-        cmake-version: '3.21'  # Gereksinimlerinize göre versiyonu ayarlayın
-
-    - name: Install dependencies
+    - name: Install CMake
       run: |
         sudo apt-get update
+        sudo apt-get install -y cmake
         sudo apt-get install -y build-essential libglib2.0-dev libx11-dev libgl-dev  # İhtiyaç duyduğunuz kütüphaneler
-        sudo apt-get install -y cmake g++ gcc make  # CMake ve derleyici araçları
+        sudo apt-get install -y g++ gcc make  # CMake ve derleyici araçları
 
     - name: Build project
       run: |
@@ -35,7 +31,7 @@ jobs:
         make
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: cs-client-build
         path: ./build
