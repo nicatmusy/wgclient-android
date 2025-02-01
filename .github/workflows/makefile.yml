@@ -28,7 +28,7 @@ jobs:
         rm -rf build  # Önceden var olan build dizinini sil
         mkdir build
         cd build
-        cmake ..
+        cmake ../  # CMakeLists.txt dosyasının olduğu dizine doğru geçiş yapıyoruz
         make
 
     - name: Upload build artifacts
