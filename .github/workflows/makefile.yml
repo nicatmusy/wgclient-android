@@ -23,9 +23,10 @@ jobs:
         sudo apt-get install -y build-essential libglib2.0-dev libx11-dev libgl-dev
         sudo apt-get install -y g++ gcc make
 
-    - name: Build project
+    - name: Clean up and build project
       run: |
-        mkdir -p build  # Dizin zaten varsa hata vermez
+        rm -rf build  # Önceden var olan build dizinini sil
+        mkdir build
         cd build
         cmake ..
         make
