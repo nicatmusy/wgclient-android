@@ -25,8 +25,6 @@ jobs:
 
     - name: Clean up and build project
       run: |
-        rm -rf build  # Önceden var olan build dizinini sil
-        mkdir build
         cd ./  # CMakeLists.txt dosyasının olduğu dizine geçiş yapıyoruz
         mkdir build
         cd build
