@@ -26,8 +26,6 @@ jobs:
     - name: Clean up and build project
       run: |
         cd ./  # CMakeLists.txt dosyasının olduğu dizine geçiş yapıyoruz
-        mkdir build
-        cd build
         cmake ..  # CMakeLists.txt dosyasının olduğu dizine işaret ediyor
         make
 
